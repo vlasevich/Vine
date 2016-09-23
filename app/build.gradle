@@ -32,4 +32,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'javax.annotation:javax.annotation-api:1.2'
+    //Realm
+    compile 'io.realm:realm-android:0.83.0'
 }
