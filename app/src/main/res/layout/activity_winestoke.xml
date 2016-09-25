@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
 
-    <Button
-        android:id="@+id/button4"
+    <fragment
+        android:id="@+id/omega"
+        class="com.home.vlas.vine.activity.fragment.LeftPanelFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topPanel"
+        android:layout_toEndOf="@+id/alpha"
+        tools:layout="@layout/fragment_winestock" />
+
+    <fragment
+        android:id="@+id/alpha"
+        class="com.home.vlas.vine.activity.fragment.WineStokeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        tools:layout="@layout/fragment_panel" />
+
+    <fragment
+        android:id="@+id/topPanel"
+        class="com.home.vlas.vine.activity.fragment.FragmentTopPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/alpha"
+        tools:layout="@layout/fragment_panel"></fragment>
+
+</RelativeLayout>

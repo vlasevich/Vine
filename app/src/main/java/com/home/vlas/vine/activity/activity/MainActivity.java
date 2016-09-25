@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         Intent wineStockIntent = new Intent(MainActivity.this, VineStockActivity.class);
         wineStockIntent.putExtra("token", token);
         wineStockIntent.putExtra("cellarId", cellarId);
+        wineStockIntent.putExtra("imei", "12345");
         MainActivity.this.startActivity(wineStockIntent);
     }
 

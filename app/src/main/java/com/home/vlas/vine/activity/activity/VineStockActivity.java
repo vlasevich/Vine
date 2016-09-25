@@ -1,12 +1,13 @@
 package com.home.vlas.vine.activity.activity;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.home.vlas.vine.R;
 import com.home.vlas.vine.activity.app.Prefs;
@@ -25,57 +26,73 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VineStockActivity extends Activity {
-    Button button;
-    WineInStock wineInStock;
+public class VineStockActivity extends FragmentActivity {
+    private WineInStock wineInStock;
     private Realm realm;
+    private String token;
+    private String cellarId;
+    private String imei;
+    private TextView totalCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winestoke);
 
+        Button button2 = (Button) findViewById(R.id.button2);
+        TextView totalCount = (TextView) findViewById(R.id.totalCount);
+
+        totalCount.setText(RealmController.with(this).getWineInStockBottles().first().getTotal());
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Click");
+            }
+        });
+
         this.realm = RealmController.with(this).getRealm();
         /*for (Reminder reminder: RealmController.with(this).getREminders()){
             Log.i("Reminder",reminder.getBottleCount()+" | "+reminder.getWineName());
         }*/
-        System.out.println(RealmController.with(this).getTurnovers().size());
-        /*for (Turnover turnover: RealmController.with(this).getTurnovers()){
+        //System.out.println(RealmController.with(this).getTurnovers().size());
+        for (Turnover turnover : RealmController.with(this).getTurnovers()) {
             Log.i("Reminder",turnover.getBottleCount()+" | "+turnover.getWineName());
-        }*/
+        }
 
-        WineInStockBottles w = new WineInStockBottles();
+/*        WineInStockBottles w = new WineInStockBottles();
         if (!RealmController.with(this).getWineInStockBottles().isEmpty()) {
             w = RealmController.with(this).getWineInStockBottles().first();
             System.out.println("Bottles: " + w.getBottle());
             System.out.println("Inbox: " + w.getInbox());
             System.out.println("Total: " + w.getTotal());
-        }
+        }*/
 
         Intent intent = getIntent();
         //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        token = intent.getStringExtra("token");
+        cellarId = intent.getStringExtra("cellarId");
+        imei = intent.getStringExtra("imei");
 
-        button = (Button) findViewById(R.id.button4);
-        button.setOnClickListener(new View.OnClickListener() {
+        getData();
+    }
+
+    private void getData() {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<WineInStock> call = apiService.getWineInStock(imei, token, cellarId);
+        call.enqueue(new Callback<WineInStock>() {
             @Override
-            public void onClick(View v) {
-                ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-                Call<WineInStock> call = apiService.getWineInStock("12345", "bc9c14a1a83c9640f21cc70ab15510cf", "2");
-                call.enqueue(new Callback<WineInStock>() {
-                    @Override
-                    public void onResponse(Call<WineInStock> call, Response<WineInStock> response) {
-                        //System.out.println(response.code());
-                        //System.out.println(response.body());
-                        wineInStock = response.body();
-                        //System.out.println(wineInStock.reminder.size());
-                        setData();
-                    }
+            public void onResponse(Call<WineInStock> call, Response<WineInStock> response) {
+                //System.out.println(response.code());
+                //System.out.println(response.body());
+                wineInStock = response.body();
+                //System.out.println(wineInStock.reminder.size());
+                setData();
+            }
 
-                    @Override
-                    public void onFailure(Call<WineInStock> call, Throwable t) {
-                        System.out.println(t.getMessage());
-                    }
-                });
+            @Override
+            public void onFailure(Call<WineInStock> call, Throwable t) {
+                System.out.println(t.getMessage());
             }
         });
     }
