@@ -34,4 +34,6 @@ dependencies {
     compile 'javax.annotation:javax.annotation-api:1.2'
     //Realm
     compile 'io.realm:realm-android:0.83.0'
+    //cardView
+    compile 'com.android.support:cardview-v7:24.2.1'
 }
