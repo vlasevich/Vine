@@ -5,24 +5,128 @@
     android:layout_height="150dp"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/greyCircle"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_alignTop="@+id/rightCardView"
-        android:layout_centerHorizontal="true"
-        android:visibility="visible"
-        card_view:srcCompat="@drawable/circle_grey" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/rightCardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/greyCircle"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/rightDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_toEndOf="@+id/rightCalendarIcon"
+                android:text="11.11.2111"
+                android:textColor="@android:color/background_dark" />
+
+            <TextView
+                android:id="@+id/rightBackgroundBox"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/rounded_all_corners" />
+
+            <ImageView
+                android:id="@+id/rightBoxIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/leftName"
+                android:layout_alignTop="@+id/rightBackgroundBox"
+                android:layout_toStartOf="@+id/rightDate"
+                card_view:srcCompat="@drawable/boxes_pictogram" />
+
+            <TextView
+                android:id="@+id/rightName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="TextView"
+                android:textColor="@android:color/background_dark" />
+
+            <ImageView
+                android:id="@+id/rightCalendarIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="45dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="103dp"
+                android:layout_marginRight="5dp"
+                android:layout_toEndOf="@+id/greyCircle"
+                card_view:srcCompat="@drawable/calendar_icon" />
+
+            <TextView
+                android:id="@+id/rightBackgroundBottle"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_toEndOf="@+id/rightBackgroundBox"
+                android:background="@drawable/rounded_all_corners" />
+
+            <TextView
+                android:id="@+id/rightBoxCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/rightBackgroundBox"
+                android:layout_alignEnd="@+id/rightDate"
+                android:layout_marginBottom="11dp"
+                android:text="-1000"
+                android:textColor="@android:color/holo_red_light" />
+
+            <ImageView
+                android:id="@+id/rightBottleIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/rightBackgroundBottle"
+                android:layout_alignTop="@+id/rightBoxCount"
+                android:layout_marginStart="14dp"
+                card_view:srcCompat="@drawable/shape" />
+
+            <TextView
+                android:id="@+id/rightBottleCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/rightBackgroundBottle"
+                android:layout_alignTop="@+id/rightBottleIcon"
+                android:layout_marginEnd="12dp"
+                android:text="-100"
+                android:textColor="@android:color/holo_red_light" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:id="@+id/leftCardView"
-        android:layout_width="190dp"
-        android:layout_height="130dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_alignTop="@+id/greyCircle"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="5dp"
         android:layout_toStartOf="@+id/greyCircle"
         android:visibility="visible"
         card_view:cardCornerRadius="4dp"
@@ -35,19 +139,15 @@
 
             <ImageView
                 android:id="@+id/leftCalendarIcon"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/leftCardView"
+                android:layout_marginBottom="45dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="103dp"
+                android:layout_marginTop="5dp"
                 card_view:srcCompat="@drawable/calendar_icon" />
-
-            <TextView
-                android:id="@+id/leftDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/leftCardView"
-                android:layout_marginStart="50dp"
-                android:text="02.02.2022" />
 
             <TextView
                 android:id="@+id/leftGreyBackgroundBox"
@@ -55,13 +155,28 @@
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
                 android:background="@drawable/rounded_all_corners" />
+
+            <TextView
+                android:id="@+id/leftName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/leftCalendarIcon"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="WineName"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/leftGreyBackgroundBottle"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
+                android:layout_alignBaseline="@+id/leftGreyBackgroundBox"
+                android:layout_alignBottom="@+id/leftGreyBackgroundBox"
+                android:layout_marginLeft="4dp"
                 android:layout_toEndOf="@+id/leftGreyBackgroundBox"
                 android:background="@drawable/rounded_all_corners" />
 
@@ -69,33 +184,17 @@
                 android:id="@+id/leftBoxIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/leftGreyBackgroundBox"
+                android:layout_alignStart="@+id/leftName"
+                android:layout_alignTop="@+id/leftBottleCount"
+                android:layout_marginLeft="4dp"
                 card_view:srcCompat="@drawable/boxes_pictogram" />
-
-            <TextView
-                android:id="@+id/leftBoxCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/leftGreyBackgroundBox"
-                android:layout_marginTop="11dp"
-                android:layout_toStartOf="@+id/leftGreyBackgroundBottle"
-                android:text="+111111" />
-
-            <TextView
-                android:id="@+id/leftName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/leftCalendarIcon"
-                android:text="WineName" />
 
             <ImageView
                 android:id="@+id/leftBottleIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_toEndOf="@+id/leftGreyBackgroundBox"
+                android:layout_alignBottom="@+id/leftBottleCount"
+                android:layout_toEndOf="@+id/leftCalendarIcon"
                 card_view:srcCompat="@drawable/shape" />
 
             <TextView
@@ -104,116 +203,49 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/leftBoxCount"
                 android:layout_alignBottom="@+id/leftBoxCount"
-                android:layout_toEndOf="@+id/leftBottleIcon"
-                android:text="+1001" />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/rightCardView"
-        android:layout_width="190dp"
-        android:layout_height="130dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="14dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_toEndOf="@+id/greyCircle"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="4dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <ImageView
-                android:id="@+id/rightCalendarIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/greyCircle"
-                card_view:srcCompat="@drawable/calendar_icon" />
+                android:layout_alignEnd="@+id/leftDate"
+                android:text="+1001"
+                android:textColor="@color/colorLoginButton" />
 
             <TextView
-                android:id="@+id/rightDate"
+                android:id="@+id/leftBoxCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/rightCalendarIcon"
-                android:layout_marginBottom="15dp"
-                android:layout_toEndOf="@+id/rightCalendarIcon"
-                android:text="TextView" />
+                android:layout_alignBottom="@+id/leftGreyBackgroundBottle"
+                android:layout_alignEnd="@+id/leftGreyBackgroundBottle"
+                android:layout_marginBottom="11dp"
+                android:text="+111111"
+                android:textColor="@color/colorLoginButton" />
 
             <TextView
-                android:id="@+id/rightName"
+                android:id="@+id/leftDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/imageView7"
-                android:layout_marginTop="39dp"
-                android:text="TextView" />
+                android:layout_alignTop="@+id/leftCalendarIcon"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="75dp"
+                android:layout_marginStart="21dp"
+                android:layout_toEndOf="@+id/leftBoxIcon"
+                android:text="02.02.2022"
+                android:textColor="@android:color/background_dark" />
 
-            <TextView
-                android:id="@+id/rightBackgroundBox"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/rounded_all_corners" />
-
-            <TextView
-                android:id="@+id/rightBackgroundBottle"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_alignTop="@+id/rightBackgroundBox"
-                android:layout_marginStart="56dp"
-                android:layout_toEndOf="@+id/rightDate"
-                android:background="@drawable/rounded_all_corners" />
-
-            <TextView
-                android:id="@+id/rightBoxCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
-                android:layout_toStartOf="@+id/rightBackgroundBottle"
-                android:text="-1000" />
-
-            <TextView
-                android:id="@+id/rightBottleCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/rightBoxCount"
-                android:layout_alignBottom="@+id/rightBoxCount"
-                android:layout_alignEnd="@+id/rightBackgroundBottle"
-                android:text="-100" />
-
-            <ImageView
-                android:id="@+id/rightBoxIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                card_view:srcCompat="@drawable/boxes_pictogram" />
-
-            <ImageView
-                android:id="@+id/rightBottleIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="180dp"
-                card_view:srcCompat="@drawable/shape" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
     <ImageView
+        android:id="@+id/greyCircle"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignTop="@+id/rightCardView"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        card_view:srcCompat="@drawable/circle_grey" />
+
+    <ImageView
         android:id="@+id/greyLine"
-        android:layout_width="256dp"
-        android:layout_height="128dp"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/greyCircle"
+        android:layout_width="128dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:visibility="visible"
         card_view:srcCompat="@drawable/vertical_line" />
