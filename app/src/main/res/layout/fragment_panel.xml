@@ -3,30 +3,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_light"
+    android:background="@color/darkLeftPanel"
     android:gravity="right"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/dashboardIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        app:srcCompat="@drawable/dashboard_icon" />
+
     <TextView
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Omega Pane" />
+        android:layout_margin="8dp"
+        android:gravity="center_horizontal"
+        android:text="ДАШБОРД"
+        android:textColor="@color/colorWhite" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="60dp"
+        android:id="@+id/wine"
+        android:layout_width="17dp"
         android:layout_height="60dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_margin="8dp"
+        app:srcCompat="@drawable/butilka_icon" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:srcCompat="@mipmap/ic_launcher" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_margin="8dp"
+        android:text="Вино"
+        android:textColor="@color/colorWhite" />
+
+    <ImageView
+        android:id="@+id/navi"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        app:srcCompat="@drawable/navigation_icon" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="НАВИГАЦИЯ"
+        android:textColor="@color/colorWhite" />
+
+    <ImageView
+        android:id="@+id/alert"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        app:srcCompat="@drawable/napominania_icon" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="НАПОМИНАНИЯ"
+        android:textColor="@color/colorWhite" />
+
+    <ImageView
+        android:id="@+id/stat"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        app:srcCompat="@drawable/statistika_icon" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="СТАТИСТИКА"
+        android:textColor="@color/colorWhite" />
+
+    <ImageView
+        android:id="@+id/news"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        app:srcCompat="@drawable/novosti_icon" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="НОВОСТИ"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp" />
 </LinearLayout>

@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
+    android:background="@color/darkLeftPanel"
     android:gravity="top"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-</LinearLayout>
+    <Button
+        android:id="@+id/bSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/button_rounded"
+        android:drawableLeft="@drawable/plus_icon"
+        android:elevation="4dp"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text=" ДОБАВИТЬ НОВОЕ ВИНО"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
+
+</RelativeLayout>

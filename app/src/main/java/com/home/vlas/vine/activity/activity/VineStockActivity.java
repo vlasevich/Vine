@@ -57,6 +57,20 @@ public class VineStockActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winestoke);
 
+        ImageView dashboard = (ImageView) findViewById(R.id.dashboardIcon);
+        dashboard.setBackgroundResource(R.drawable.dashboard_icon);
+        ImageView wine = (ImageView) findViewById(R.id.wine);
+        wine.setBackgroundResource(R.drawable.butilka_icon);
+        ImageView navi = (ImageView) findViewById(R.id.navi);
+        navi.setBackgroundResource(R.drawable.navigation_icon);
+        ImageView alert = (ImageView) findViewById(R.id.alert);
+        alert.setBackgroundResource(R.drawable.napominania_icon);
+        ImageView stat = (ImageView) findViewById(R.id.stat);
+        stat.setBackgroundResource(R.drawable.statistika_icon);
+        ImageView news = (ImageView) findViewById(R.id.news);
+        news.setBackgroundResource(R.drawable.novosti_icon);
+
+
         //Button button2 = (Button) findViewById(R.id.button2);
         spinner = (ProgressBar) findViewById(R.id.progressBar);
         totalCount = (TextView) findViewById(R.id.totalCount);
