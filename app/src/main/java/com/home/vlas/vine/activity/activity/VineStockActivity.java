@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.home.vlas.vine.R;
@@ -47,6 +48,7 @@ public class VineStockActivity extends FragmentActivity {
     private RemindersAdapter remindersAdapter;
     private TurnoverAdapter turnoverAdapter;
     private List<TurnoverPair> turnoverPair;
+    private ImageView bottle, box;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,10 @@ public class VineStockActivity extends FragmentActivity {
 
         //Button button2 = (Button) findViewById(R.id.button2);
         TextView totalCount = (TextView) findViewById(R.id.totalCount);
+        bottle = (ImageView) findViewById(R.id.bottleImage);
+        bottle.setBackgroundResource(R.drawable.shape);
+        box = (ImageView) findViewById(R.id.boxImage);
+        box.setBackgroundResource(R.drawable.boxes_pictogram);
 
         totalCount.setText(RealmController.with(this).getWineInStockBottles().first().getTotal());
 
@@ -84,11 +90,11 @@ public class VineStockActivity extends FragmentActivity {
             }
         });*/
 
-        turnoverPair = transformTurnovers(RealmController.with(this).getTurnovers());
+/*        turnoverPair = transformTurnovers(RealmController.with(this).getTurnovers());
         System.out.println("============================");
         System.out.println(turnoverPair.get(17).getTurnoverList().get(0).getWineName());
         System.out.println(turnoverPair.get(17).getTurnoverList().get(1).getBoxCount());
-        System.out.println("============================");
+        System.out.println("============================");*/
 
         this.realm = RealmController.with(this).getRealm();
         /*for (Reminder reminder: RealmController.with(this).getREminders()){

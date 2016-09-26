@@ -123,11 +123,29 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
             rightCardView = (CardView) v.findViewById(R.id.rightCardView);
 
             leftCalendarIcon = (ImageView) v.findViewById(R.id.leftCalendarIcon);
-            //leftCalendarIcon.setBackgroundResource(R.drawable.circle_grey);
+            leftCalendarIcon.setBackgroundResource(R.drawable.calendar_icon);
+
             greyCircle = (ImageView) v.findViewById(R.id.greyCircle);
             greyCircle.setBackgroundResource(R.drawable.circle_grey);
+
             greyLine = (ImageView) v.findViewById(R.id.greyLine);
             greyLine.setBackgroundResource(R.drawable.vertical_line);
+
+            leftBoxIcon = (ImageView) v.findViewById(R.id.leftBoxIcon);
+            leftBoxIcon.setBackgroundResource(R.drawable.boxes_pictogram);
+
+            leftBottleIcon = (ImageView) v.findViewById(R.id.leftBottleIcon);
+            leftBottleIcon.setBackgroundResource(R.drawable.shape);
+
+            rightCalendarIcon = (ImageView) v.findViewById(R.id.rightCalendarIcon);
+            rightCalendarIcon.setBackgroundResource(R.drawable.calendar_icon);
+
+            rightBoxIcon = (ImageView) v.findViewById(R.id.rightBoxIcon);
+            rightBoxIcon.setBackgroundResource(R.drawable.boxes_pictogram);
+
+            rightBottleIcon = (ImageView) v.findViewById(R.id.rightBottleIcon);
+            rightBottleIcon.setBackgroundResource(R.drawable.shape);
+
         }
     }
 }
