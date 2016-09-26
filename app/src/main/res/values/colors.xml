@@ -6,4 +6,7 @@
     <color name="colorLoginButton">#827717</color>
     <color name="colorWhite">#ffffff</color>
     <color name="lightGrey">#f1f1f1</color>
+    <color name="brownTitle">#423e3e</color>
+    <color name="orangeTitle">#fc8d00</color>
+    <color name="greenTitle">#006859</color>
 </resources>

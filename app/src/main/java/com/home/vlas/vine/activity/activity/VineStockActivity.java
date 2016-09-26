@@ -7,8 +7,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.home.vlas.vine.R;
@@ -43,12 +44,13 @@ public class VineStockActivity extends FragmentActivity {
     private String token;
     private String cellarId;
     private String imei;
-    private TextView totalCount;
+    private TextView totalCount, totalBox, totalBottle;
     private RecyclerView reminderRecyclerView, turnoverRecyclerView;
     private RemindersAdapter remindersAdapter;
     private TurnoverAdapter turnoverAdapter;
     private List<TurnoverPair> turnoverPair;
     private ImageView bottle, box;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,71 +58,52 @@ public class VineStockActivity extends FragmentActivity {
         setContentView(R.layout.activity_winestoke);
 
         //Button button2 = (Button) findViewById(R.id.button2);
-        TextView totalCount = (TextView) findViewById(R.id.totalCount);
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
+        totalCount = (TextView) findViewById(R.id.totalCount);
+        totalBox = (TextView) findViewById(R.id.inBoxCount);
+        totalBottle = (TextView) findViewById(R.id.totalBottlesCount);
         bottle = (ImageView) findViewById(R.id.bottleImage);
         bottle.setBackgroundResource(R.drawable.shape);
         box = (ImageView) findViewById(R.id.boxImage);
         box.setBackgroundResource(R.drawable.boxes_pictogram);
-
-        totalCount.setText(RealmController.with(this).getWineInStockBottles().first().getTotal());
-
-
         reminderRecyclerView = (RecyclerView) findViewById(R.id.reminderList);
-
         turnoverRecyclerView = (RecyclerView) findViewById(R.id.turnoverList);
 
-        turnoverAdapter = new TurnoverAdapter(transformTurnovers(RealmController.with(this).getTurnovers()));
-        RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
-        turnoverRecyclerView.setLayoutManager(mLayoutManager2);
-        turnoverRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        turnoverRecyclerView.setAdapter(turnoverAdapter);
-        turnoverAdapter.notifyDataSetChanged();
+        Intent intent = getIntent();
+        token = intent.getStringExtra("token");
+        cellarId = intent.getStringExtra("cellarId");
+        imei = intent.getStringExtra("imei");
 
+        //spinner.setVisibility(View.GONE);
+        spinner.setVisibility(View.VISIBLE);
+
+        this.realm = RealmController.with(this).getRealm();
+
+        getData();
+    }
+
+    private void startTotal() {
+        totalCount.setText(RealmController.with(this).getWineInStockBottles().first().getTotal());
+        totalBox.setText(RealmController.with(this).getWineInStockBottles().first().getInbox());
+        totalBottle.setText(RealmController.with(this).getWineInStockBottles().first().getBottle());
+    }
+
+    private void startReminder() {
         remindersAdapter = new RemindersAdapter(getApplicationContext(), RealmController.with(this).getREminders());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         reminderRecyclerView.setLayoutManager(mLayoutManager);
         reminderRecyclerView.setItemAnimator(new DefaultItemAnimator());
         reminderRecyclerView.setAdapter(remindersAdapter);
         remindersAdapter.notifyDataSetChanged();
+    }
 
-        /*button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Click");
-            }
-        });*/
-
-/*        turnoverPair = transformTurnovers(RealmController.with(this).getTurnovers());
-        System.out.println("============================");
-        System.out.println(turnoverPair.get(17).getTurnoverList().get(0).getWineName());
-        System.out.println(turnoverPair.get(17).getTurnoverList().get(1).getBoxCount());
-        System.out.println("============================");*/
-
-        this.realm = RealmController.with(this).getRealm();
-        /*for (Reminder reminder: RealmController.with(this).getREminders()){
-            Log.i("Reminder",reminder.getBottleCount()+" | "+reminder.getWineName());
-        }*/
-        //System.out.println(RealmController.with(this).getTurnovers().size());
-
-        /*for (Turnover turnover : RealmController.with(this).getTurnovers()) {
-            Log.i("Reminder",turnover.getBottleCount()+" | "+turnover.getWineName());
-        }*/
-
-/*        WineInStockBottles w = new WineInStockBottles();
-        if (!RealmController.with(this).getWineInStockBottles().isEmpty()) {
-            w = RealmController.with(this).getWineInStockBottles().first();
-            System.out.println("Bottles: " + w.getBottle());
-            System.out.println("Inbox: " + w.getInbox());
-            System.out.println("Total: " + w.getTotal());
-        }*/
-
-        Intent intent = getIntent();
-        //String value = intent.getStringExtra("key"); //if it's a string you stored.
-        token = intent.getStringExtra("token");
-        cellarId = intent.getStringExtra("cellarId");
-        imei = intent.getStringExtra("imei");
-
-        getData();
+    private void startTurnover() {
+        turnoverAdapter = new TurnoverAdapter(transformTurnovers(RealmController.with(this).getTurnovers()));
+        RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
+        turnoverRecyclerView.setLayoutManager(mLayoutManager2);
+        turnoverRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        turnoverRecyclerView.setAdapter(turnoverAdapter);
+        turnoverAdapter.notifyDataSetChanged();
     }
 
     private void getData() {
@@ -129,10 +112,7 @@ public class VineStockActivity extends FragmentActivity {
         call.enqueue(new Callback<WineInStock>() {
             @Override
             public void onResponse(Call<WineInStock> call, Response<WineInStock> response) {
-                //System.out.println(response.code());
-                //System.out.println(response.body());
                 wineInStock = response.body();
-                //System.out.println(wineInStock.reminder.size());
                 setData();
             }
 
@@ -146,17 +126,15 @@ public class VineStockActivity extends FragmentActivity {
     private void setData() {
         //this.realm = RealmController.with(this).getRealm();
         //setupRecycler();
-
         if (!Prefs.with(this).getPreLoad()) {
             setRealmData(wineInStock);
         }
-
         // refresh the realm instance
         RealmController.with(this).refresh();
-
-/*      for (Reminder reminder: RealmController.with(this).getREminders()){
-          Log.i("Reminder",reminder.getBottleCount()+" | "+reminder.getWineName());
-      }*/
+        startTotal();
+        startReminder();
+        startTurnover();
+        spinner.setVisibility(View.GONE);
     }
 
 
@@ -166,12 +144,6 @@ public class VineStockActivity extends FragmentActivity {
         ArrayList<Turnover> turnoversList = new ArrayList<>();
         ArrayList<WineInStockBottles> wineInStockBottlesList = new ArrayList<>();
 
-        /*Book book = new Book();
-        book.setId(q + System.currentTimeMillis());
-        book.setAuthor("Reto Meier");
-        book.setTitle("Android 4 Application Development");
-        book.setImageUrl("http://api.androidhive.info/images/realm/1.png");
-        books.add(book);*/
         WineInStockBottles wineInStockBottles = new WineInStockBottles(wineInStock.wineInStock.bottle.toString(),
                 wineInStock.wineInStock.inbox.toString(),
                 wineInStock.wineInStock.total.toString());
@@ -207,7 +179,6 @@ public class VineStockActivity extends FragmentActivity {
                     r.wineName));
         }
 
-
         for (Reminder r : remindersList) {
             // Persist your data easily
             realm.beginTransaction();
@@ -217,10 +188,9 @@ public class VineStockActivity extends FragmentActivity {
 
         Prefs.with(this).setPreLoad(true);
 
-        for (Reminder reminder : remindersList) {
+/*        for (Reminder reminder : remindersList) {
             Log.i("Reminder", reminder.getBottleCount() + " | " + reminder.getWineName());
-        }
-
+        }*/
     }
 
     private List<TurnoverPair> transformTurnovers(RealmResults<Turnover> rawList) {
