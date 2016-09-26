@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.home.vlas.vine.R;
 import com.home.vlas.vine.activity.model.TokenRequest;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Button loginButton;
     private EditText passwordEditText, loginEditText;
+    private TextView erorMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginBtn);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         loginEditText = (EditText) findViewById(R.id.loginEditText);
+        erorMsg = (TextView) findViewById(R.id.errorMessage);
+        erorMsg.setVisibility(View.INVISIBLE);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                erorMsg.setVisibility(View.INVISIBLE);
                 ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
                 final TokenRequest tokenRequest = new TokenRequest();
                 tokenRequest.setImei("12345");
@@ -58,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             try {
                                 String error = getErrorMessage(response.errorBody().string());
-                                passwordEditText.setError(error);
+                                erorMsg.setVisibility(View.VISIBLE);
+                                erorMsg.setText(error);
 
                             } catch (Exception e) {
                                 Log.e(TAG, e.getMessage());
