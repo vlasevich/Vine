@@ -8,7 +8,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "q.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -36,4 +36,6 @@ dependencies {
     compile 'io.realm:realm-android:0.83.0'
     //cardView
     compile 'com.android.support:cardview-v7:24.2.1'
+    //Joda Time
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
 }

@@ -90,13 +90,12 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view2"
-        android:layout_width="290dp"
+        android:layout_width="400dp"
         android:layout_height="500dp"
-        android:layout_below="@+id/card_view"
-        android:layout_marginLeft="160dp"
+        android:layout_alignStart="@+id/card_view"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="160dp"
-        android:layout_marginStart="353dp"
-        android:layout_toEndOf="@+id/card_view"
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="4dp">
 
@@ -105,7 +104,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/title2"
+                android:id="@+id/leftColorBorder"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_alignParentStart="true"
@@ -117,11 +116,50 @@
                 android:textSize="14dp" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvAllUsers"
+                android:id="@+id/reminderList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/title2" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true" />
 
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view3"
+        android:layout_width="600dp"
+        android:layout_height="500dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/card_view2"
+        android:layout_marginEnd="18dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="160dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/topColorBorder"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/rounded_corner"
+                android:elevation="0dp"
+                android:gravity="center_vertical"
+                android:text="Вино в наличии"
+                android:textSize="14dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/turnoverList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/topColorBorder" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
