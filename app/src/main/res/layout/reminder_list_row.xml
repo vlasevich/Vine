@@ -9,12 +9,12 @@
         android:id="@+id/card_view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="4dp">
 
@@ -48,17 +48,6 @@
                 android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/leftColorBorder"
-                android:layout_alignBottom="@+id/leftColorBorder"
-                android:layout_marginLeft="30dp"
-                android:layout_toEndOf="@+id/leftColorBorder"
-                android:text="45"
-                android:textColor="@android:color/background_dark" />
-
-            <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -85,13 +74,32 @@
 
             <ImageView
                 android:id="@+id/bottle"
+                android:layout_width="10dp"
+                android:layout_height="32dp"
+                android:layout_alignStart="@+id/reminderTime"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/shape" />
+
+            <TextView
+                android:id="@+id/count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="18dp"
-                android:layout_marginRight="169dp"
-                android:layout_toEndOf="@+id/leftColorBorder"
-                card_view:srcCompat="@drawable/shape" />
+                android:layout_alignBaseline="@+id/leftColorBorder"
+                android:layout_alignBottom="@+id/leftColorBorder"
+                android:layout_marginLeft="4dp"
+                android:layout_toEndOf="@+id/boxreminderBox"
+                android:text="45"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/boxreminderBox"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignStart="@+id/bottle"
+                android:layout_alignTop="@+id/bottle"
+                card_view:srcCompat="@drawable/boxes_pictogram" />
 
 
         </RelativeLayout>

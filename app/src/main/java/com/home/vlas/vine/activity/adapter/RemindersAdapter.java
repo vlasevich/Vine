@@ -43,10 +43,17 @@ public class RemindersAdapter extends RecyclerView.Adapter<RemindersAdapter.Remi
         holder.name.setText(reminder.getWineName());
         holder.comment.setText(reminder.getText());
 
-        if (reminder.getReminderType().equals("0")) {
-            holder.colorBorder.setBackgroundColor(context.getResources().getColor(R.color.cardview_dark_background));
+        holder.box.setVisibility(View.VISIBLE);
+        holder.bottle.setVisibility(View.VISIBLE);
+
+        if (reminder.getReminderType().equals("1")) {
+            holder.colorBorder.setBackgroundColor(context.getResources().getColor(R.color.colorLoginButton));
+            holder.bottle.setBackgroundResource(R.drawable.shape);
+            holder.box.setVisibility(View.INVISIBLE);
         } else {
-            holder.colorBorder.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+            holder.colorBorder.setBackgroundColor(context.getResources().getColor(R.color.redColor));
+            holder.box.setBackgroundResource(R.drawable.boxes_pictogram);
+            holder.bottle.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -57,7 +64,7 @@ public class RemindersAdapter extends RecyclerView.Adapter<RemindersAdapter.Remi
 
     public class ReminderViewHolder extends RecyclerView.ViewHolder {
         TextView time, comment, name, count, colorBorder;
-        ImageView bottle;
+        ImageView bottle, box;
 
         public ReminderViewHolder(View itemView) {
             super(itemView);
@@ -67,7 +74,7 @@ public class RemindersAdapter extends RecyclerView.Adapter<RemindersAdapter.Remi
             count = (TextView) itemView.findViewById(R.id.count);
             colorBorder = (TextView) itemView.findViewById(R.id.leftColorBorder);
             bottle = (ImageView) itemView.findViewById(R.id.bottle);
-            bottle.setBackgroundResource(R.drawable.shape);
+            box = (ImageView) itemView.findViewById(R.id.boxreminderBox);
         }
     }
 }

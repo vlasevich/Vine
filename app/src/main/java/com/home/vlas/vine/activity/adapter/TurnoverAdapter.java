@@ -48,8 +48,8 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
             for (Turnover t : turnoverPair.getTurnoverList()) {
                 switch (t.getStatusId()) {
                     case "1": {
-                        holder.leftBottleCount.setText(t.getBottleCount());
-                        holder.leftBoxCount.setText(t.getBoxCount());
+                        holder.leftBottleCount.setText("+" + t.getBottleCount());
+                        holder.leftBoxCount.setText("+" + t.getBoxCount());
                         holder.leftDate.setText(t.getDate());
                         holder.leftName.setText(t.getWineName());
 
@@ -57,8 +57,8 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
                         break;
                     }
                     case "0": {
-                        holder.rightBoxCount.setText(t.getBoxCount());
-                        holder.rightBottleCount.setText(t.getBottleCount());
+                        holder.rightBoxCount.setText("-" + t.getBoxCount());
+                        holder.rightBottleCount.setText("-" + t.getBottleCount());
                         holder.rightDate.setText(t.getDate());
                         holder.rightName.setText(t.getWineName());
 
@@ -71,8 +71,8 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
             Turnover t = turnoverPair.getTurnoverList().get(0);
             switch (t.getStatusId()) {
                 case "1": {
-                    holder.leftBottleCount.setText(t.getBottleCount());
-                    holder.leftBoxCount.setText(t.getBoxCount());
+                    holder.leftBottleCount.setText("+" + t.getBottleCount());
+                    holder.leftBoxCount.setText("+" + t.getBoxCount());
                     holder.leftDate.setText(t.getDate());
                     holder.leftName.setText(t.getWineName());
 
@@ -80,8 +80,8 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
                     break;
                 }
                 case "0": {
-                    holder.rightBoxCount.setText(t.getBoxCount());
-                    holder.rightBottleCount.setText(t.getBottleCount());
+                    holder.rightBoxCount.setText("-" + t.getBoxCount());
+                    holder.rightBottleCount.setText("-" + t.getBottleCount());
                     holder.rightDate.setText(t.getDate());
                     holder.rightName.setText(t.getWineName());
 
