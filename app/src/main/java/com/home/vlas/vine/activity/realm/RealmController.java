@@ -55,13 +55,11 @@ public class RealmController {
         return realm;
     }
 
-    //Refresh the realm istance
     public void refresh() {
 
         realm.refresh();
     }
 
-    //clear all objects from Book.class
     public void clearAll() {
 
         realm.beginTransaction();
@@ -69,7 +67,6 @@ public class RealmController {
         realm.commitTransaction();
     }
 
-    //find all objects in the Book.class
     public RealmResults<Reminder> getREminders() {
 
         return realm.where(Reminder.class).findAll();
@@ -83,26 +80,14 @@ public class RealmController {
         return realm.where(WineInStockBottles.class).findAll();
     }
 
-    //query a single item with the given id
     public Reminder getReminder(String id) {
 
         return realm.where(Reminder.class).equalTo("id", id).findFirst();
     }
 
-    //check if Book.class is empty
     public boolean hasReminders() {
 
         return !realm.allObjects(Reminder.class).isEmpty();
     }
 
-    //query example
-    public RealmResults<Reminder> queryedReminders() {
-        // TODO query example
-        return realm.where(Reminder.class)
-                .contains("author", "Author 0")
-                .or()
-                .contains("title", "Realm")
-                .findAll();
-
-    }
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -39,6 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VineStockActivity extends FragmentActivity {
+    private static final String TAG = VineStockActivity.class.getSimpleName();
     private WineInStock wineInStock;
     private Realm realm;
     private String token;
@@ -48,7 +50,6 @@ public class VineStockActivity extends FragmentActivity {
     private RecyclerView reminderRecyclerView, turnoverRecyclerView;
     private RemindersAdapter remindersAdapter;
     private TurnoverAdapter turnoverAdapter;
-    private List<TurnoverPair> turnoverPair;
     private ImageView bottle, box;
     private ProgressBar spinner;
 
@@ -71,7 +72,6 @@ public class VineStockActivity extends FragmentActivity {
         news.setBackgroundResource(R.drawable.novosti_icon);
 
 
-        //Button button2 = (Button) findViewById(R.id.button2);
         spinner = (ProgressBar) findViewById(R.id.progressBar);
         totalCount = (TextView) findViewById(R.id.totalCount);
         totalBox = (TextView) findViewById(R.id.inBoxCount);
@@ -88,7 +88,6 @@ public class VineStockActivity extends FragmentActivity {
         cellarId = intent.getStringExtra("cellarId");
         imei = intent.getStringExtra("imei");
 
-        //spinner.setVisibility(View.GONE);
         spinner.setVisibility(View.VISIBLE);
 
         this.realm = RealmController.with(this).getRealm();
@@ -132,7 +131,7 @@ public class VineStockActivity extends FragmentActivity {
 
             @Override
             public void onFailure(Call<WineInStock> call, Throwable t) {
-                System.out.println(t.getMessage());
+                Log.e(TAG, t.getMessage());
             }
         });
     }
@@ -170,8 +169,8 @@ public class VineStockActivity extends FragmentActivity {
             turnoversList.add(new Turnover(t.bottleCount.toString(),
                     t.boxCount.toString(),
                     t.canaryId.toString(),
-                    t.date.toString(),
-                    t.id.toString(),
+                    t.date,
+                    t.id,
                     t.statusId.toString(),
                     t.wineName));
         }
@@ -194,21 +193,15 @@ public class VineStockActivity extends FragmentActivity {
         }
 
         for (Reminder r : remindersList) {
-            // Persist your data easily
             realm.beginTransaction();
             realm.copyToRealm(r);
             realm.commitTransaction();
         }
 
         Prefs.with(this).setPreLoad(true);
-
-/*        for (Reminder reminder : remindersList) {
-            Log.i("Reminder", reminder.getBottleCount() + " | " + reminder.getWineName());
-        }*/
     }
 
     private List<TurnoverPair> transformTurnovers(RealmResults<Turnover> rawList) {
-        //TurnoverPair turnoverPair=new TurnoverPair();
         List<TurnoverPair> turnoverPairs = new ArrayList<>();
 
         for (int i = 0; i <= rawList.size(); i++) {

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         loginButton = (Button) findViewById(R.id.loginBtn);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         loginEditText = (EditText) findViewById(R.id.loginEditText);
@@ -46,13 +47,11 @@ public class MainActivity extends AppCompatActivity {
                 erorMsg.setVisibility(View.INVISIBLE);
                 ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
                 final TokenRequest tokenRequest = new TokenRequest();
-                tokenRequest.setImei("12345");
-                Log.i(TAG, getIMEI());
                 //getIMEI();
-                //tokenRequest.setLogin("perviy-");
+                tokenRequest.setImei("12345");
                 tokenRequest.setLogin(loginEditText.getText().toString());
-                //tokenRequest.setPassword("1234560");
                 tokenRequest.setPassword(passwordEditText.getText().toString());
+
                 retrofit2.Call<TokenResponse> tokenResponseCall = apiService.getUserToken(tokenRequest);
                 tokenResponseCall.enqueue(new Callback<TokenResponse>() {
                     @Override
@@ -90,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getErrorMessage(String errorBody) {
+        //show error messages, because it does not return normal json
         int errorMsgCode = Integer.parseInt(errorBody.substring(errorBody.indexOf("<title>"), errorBody.indexOf("</title>")).replaceAll("[^0-9]", ""));
         switch (errorMsgCode) {
             case 400: {
