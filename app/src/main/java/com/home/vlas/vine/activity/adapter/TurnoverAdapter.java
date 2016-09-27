@@ -49,8 +49,8 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
             for (Turnover t : turnoverPair.getTurnoverList()) {
                 switch (t.getStatusId()) {
                     case Prefs.ONE: {
-                        holder.leftBottleCount.setText(String.format("%s%s", context.getString(R.string.plus), t.getBottleCount()));
-                        holder.leftBoxCount.setText(String.format("%s%s", context.getString(R.string.plus), t.getBoxCount()));
+                        holder.leftBottleCount.setText(String.format("+%s", t.getBottleCount()));
+                        holder.leftBoxCount.setText(String.format("+%s", t.getBoxCount()));
                         holder.leftDate.setText(t.getDate());
                         holder.leftName.setText(t.getWineName());
 
@@ -58,8 +58,8 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
                         break;
                     }
                     case Prefs.ZERO: {
-                        holder.rightBoxCount.setText(String.format("%s%s", context.getString(R.string.minus), t.getBoxCount()));
-                        holder.rightBottleCount.setText(String.format("%s%s", context.getString(R.string.minus), t.getBottleCount()));
+                        holder.rightBoxCount.setText(String.format("-%s", t.getBoxCount()));
+                        holder.rightBottleCount.setText(String.format("-%s", t.getBottleCount()));
                         holder.rightDate.setText(t.getDate());
                         holder.rightName.setText(t.getWineName());
 
