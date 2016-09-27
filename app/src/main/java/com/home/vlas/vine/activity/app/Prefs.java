@@ -8,8 +8,11 @@ public class Prefs {
     public static final String ONE = "1";
     public static final String ZERO = "0";
     public static final int PAIR = 2;
+    public static final String AUTH_URL = "/api/v1/auth";
+    public static final String DASHBOARD_URL = "/api/v1/dashboard";
     private static final String PRE_LOAD = "preLoad";
     private static final String PREFS_NAME = "prefs";
+    public static String POST_TOKEN_URL = "http://wine-cellar.biznestext.com";
     private static Prefs instance;
     private final SharedPreferences sharedPreferences;
 
