@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class Prefs {
+    public static final String ONE = "1";
+    public static final String ZERO = "0";
+    public static final int PAIR = 2;
     private static final String PRE_LOAD = "preLoad";
     private static final String PREFS_NAME = "prefs";
     private static Prefs instance;

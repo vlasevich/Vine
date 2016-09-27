@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.activity.VineStockActivity"
+            android:name=".activity.activity.WineStockActivity"
             android:screenOrientation="landscape"></activity>
     </application>
 

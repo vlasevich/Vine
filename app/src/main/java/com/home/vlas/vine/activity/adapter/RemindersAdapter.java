@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.home.vlas.vine.R;
+import com.home.vlas.vine.activity.app.Prefs;
 import com.home.vlas.vine.activity.realm.model.Reminder;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class RemindersAdapter extends RecyclerView.Adapter<RemindersAdapter.Remi
         holder.box.setVisibility(View.VISIBLE);
         holder.bottle.setVisibility(View.VISIBLE);
 
-        if (reminder.getReminderType().equals("1")) {
+        if (reminder.getReminderType().equals(Prefs.ONE)) {
             holder.colorBorder.setBackgroundColor(context.getResources().getColor(R.color.colorLoginButton));
             holder.bottle.setBackgroundResource(R.drawable.shape);
             holder.box.setVisibility(View.INVISIBLE);

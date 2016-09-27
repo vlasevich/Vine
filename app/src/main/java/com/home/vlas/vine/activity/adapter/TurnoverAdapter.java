@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.home.vlas.vine.R;
+import com.home.vlas.vine.activity.app.Prefs;
 import com.home.vlas.vine.activity.model.TurnoverPair;
 import com.home.vlas.vine.activity.realm.model.Turnover;
 
@@ -44,21 +45,21 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
         holder.leftCardView.setVisibility(View.INVISIBLE);
         holder.rightCardView.setVisibility(View.INVISIBLE);
 
-        if (turnoverPair.getTurnoverList().size() == 2) {
+        if (turnoverPair.getTurnoverList().size() == Prefs.PAIR) {
             for (Turnover t : turnoverPair.getTurnoverList()) {
                 switch (t.getStatusId()) {
-                    case "1": {
-                        holder.leftBottleCount.setText("+" + t.getBottleCount());
-                        holder.leftBoxCount.setText("+" + t.getBoxCount());
+                    case Prefs.ONE: {
+                        holder.leftBottleCount.setText(String.format("%s%s", context.getString(R.string.plus), t.getBottleCount()));
+                        holder.leftBoxCount.setText(String.format("%s%s", context.getString(R.string.plus), t.getBoxCount()));
                         holder.leftDate.setText(t.getDate());
                         holder.leftName.setText(t.getWineName());
 
                         holder.leftCardView.setVisibility(View.VISIBLE);
                         break;
                     }
-                    case "0": {
-                        holder.rightBoxCount.setText("-" + t.getBoxCount());
-                        holder.rightBottleCount.setText("-" + t.getBottleCount());
+                    case Prefs.ZERO: {
+                        holder.rightBoxCount.setText(String.format("%s%s", context.getString(R.string.minus), t.getBoxCount()));
+                        holder.rightBottleCount.setText(String.format("%s%s", context.getString(R.string.minus), t.getBottleCount()));
                         holder.rightDate.setText(t.getDate());
                         holder.rightName.setText(t.getWineName());
 
@@ -70,18 +71,18 @@ public class TurnoverAdapter extends RecyclerView.Adapter<TurnoverAdapter.Turnov
         } else {
             Turnover t = turnoverPair.getTurnoverList().get(0);
             switch (t.getStatusId()) {
-                case "1": {
-                    holder.leftBottleCount.setText("+" + t.getBottleCount());
-                    holder.leftBoxCount.setText("+" + t.getBoxCount());
+                case Prefs.ONE: {
+                    holder.leftBottleCount.setText(String.format("+%s", t.getBottleCount()));
+                    holder.leftBoxCount.setText(String.format("+%s", t.getBoxCount()));
                     holder.leftDate.setText(t.getDate());
                     holder.leftName.setText(t.getWineName());
 
                     holder.leftCardView.setVisibility(View.VISIBLE);
                     break;
                 }
-                case "0": {
-                    holder.rightBoxCount.setText("-" + t.getBoxCount());
-                    holder.rightBottleCount.setText("-" + t.getBottleCount());
+                case Prefs.ZERO: {
+                    holder.rightBoxCount.setText(String.format("-%s", t.getBoxCount()));
+                    holder.rightBottleCount.setText(String.format("-%s", t.getBottleCount()));
                     holder.rightDate.setText(t.getDate());
                     holder.rightName.setText(t.getWineName());
 

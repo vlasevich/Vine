@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.home.vlas.vine.R;
 
-public class WineStokeFragment extends Fragment {
+public class FragmentWineStoke extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_panel, container, false);

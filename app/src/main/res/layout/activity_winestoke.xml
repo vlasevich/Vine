@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/omega"
-        class="com.home.vlas.vine.activity.fragment.LeftPanelFragment"
+        class="com.home.vlas.vine.activity.fragment.FragmentLeftPanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topPanel"
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/alpha"
-        class="com.home.vlas.vine.activity.fragment.WineStokeFragment"
+        class="com.home.vlas.vine.activity.fragment.FragmentWineStoke"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"

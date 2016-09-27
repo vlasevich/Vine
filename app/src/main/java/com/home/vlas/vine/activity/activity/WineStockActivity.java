@@ -39,8 +39,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VineStockActivity extends FragmentActivity {
-    private static final String TAG = VineStockActivity.class.getSimpleName();
+public class WineStockActivity extends FragmentActivity {
+    private static final String TAG = WineStockActivity.class.getSimpleName();
     private WineInStock wineInStock;
     private Realm realm;
     private String token;
@@ -96,12 +96,14 @@ public class VineStockActivity extends FragmentActivity {
     }
 
     private void startTotal() {
+        //show it first window data
         totalCount.setText(RealmController.with(this).getWineInStockBottles().first().getTotal());
         totalBox.setText(RealmController.with(this).getWineInStockBottles().first().getInbox());
         totalBottle.setText(RealmController.with(this).getWineInStockBottles().first().getBottle());
     }
 
     private void startReminder() {
+        //show reminder data
         remindersAdapter = new RemindersAdapter(getApplicationContext(), RealmController.with(this).getREminders());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         reminderRecyclerView.setLayoutManager(mLayoutManager);
@@ -111,6 +113,7 @@ public class VineStockActivity extends FragmentActivity {
     }
 
     private void startTurnover() {
+        //show turnover data
         turnoverAdapter = new TurnoverAdapter(transformTurnovers(RealmController.with(this).getTurnovers()));
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
         turnoverRecyclerView.setLayoutManager(mLayoutManager2);
@@ -120,6 +123,7 @@ public class VineStockActivity extends FragmentActivity {
     }
 
     private void getData() {
+        //get data from server
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<WineInStock> call = apiService.getWineInStock(imei, token, cellarId);
         call.enqueue(new Callback<WineInStock>() {
@@ -137,6 +141,7 @@ public class VineStockActivity extends FragmentActivity {
     }
 
     private void setData() {
+        //show all data
         //this.realm = RealmController.with(this).getRealm();
         //setupRecycler();
         if (!Prefs.with(this).getPreLoad()) {
@@ -152,10 +157,9 @@ public class VineStockActivity extends FragmentActivity {
 
 
     private void setRealmData(WineInStock wineInStock) {
-
+        //add data to db
         ArrayList<Reminder> remindersList = new ArrayList<>();
         ArrayList<Turnover> turnoversList = new ArrayList<>();
-        ArrayList<WineInStockBottles> wineInStockBottlesList = new ArrayList<>();
 
         WineInStockBottles wineInStockBottles = new WineInStockBottles(wineInStock.wineInStock.bottle.toString(),
                 wineInStock.wineInStock.inbox.toString(),
@@ -202,6 +206,7 @@ public class VineStockActivity extends FragmentActivity {
     }
 
     private List<TurnoverPair> transformTurnovers(RealmResults<Turnover> rawList) {
+        // transform turnover data to pairs to show it
         List<TurnoverPair> turnoverPairs = new ArrayList<>();
 
         for (int i = 0; i <= rawList.size(); i++) {
@@ -234,6 +239,7 @@ public class VineStockActivity extends FragmentActivity {
     }
 
     private boolean compareDates(String t1, String t2) {
+        // format data and compare it
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-mm-dd HH:mm:ss");
         DateTime jodaTime1 = formatter.parseDateTime(t1);
         DateTime jodaTime2 = formatter.parseDateTime(t2);
